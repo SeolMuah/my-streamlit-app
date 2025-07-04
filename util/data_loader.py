@@ -12,6 +12,7 @@ warnings.filterwarnings('ignore')
 # =============================================================================
 # 상수 정의
 # =============================================================================
+MAX_ROWS = 100 #데이터 100개 행만 읽도록 함 (센서 및 라벨)
 
 # 센서별 주파수 정보 (Hz)
 SENSOR_FREQUENCIES = {
@@ -392,7 +393,7 @@ def load_sensor_data(data_folder_path='data', show_progress=True):
             
             try:
                 status_placeholder.info(f"🔄 {sensor}.txt 파일을 읽고 있습니다...")
-                data = pd.read_csv(file_path, sep='\t', header=None)
+                data = pd.read_csv(file_path, sep='\t', header=None, nrows=MAX_ROWS)
                 sensor_data[sensor] = data
                 status_placeholder.success(f"✅ {sensor}.txt 파일 로드 완료! ({len(data)} 행)")
                 time.sleep(0.1)
@@ -417,7 +418,7 @@ def load_sensor_data(data_folder_path='data', show_progress=True):
             file_path = os.path.join(data_folder_path, f'{sensor}.txt')
             if os.path.exists(file_path):
                 try:
-                    data = pd.read_csv(file_path, sep='\t', header=None)
+                    data = pd.read_csv(file_path, sep='\t', header=None, nrows=MAX_ROWS)
                     sensor_data[sensor] = data
                 except Exception as e:
                     st.warning(f"센서 {sensor} 데이터 로드 실패: {e}")
@@ -469,7 +470,7 @@ def load_labels(data_folder_path='data', show_progress=True):
         if os.path.exists(profile_path):
             try:
                 labels = pd.read_csv(profile_path, sep='\t', header=None,
-                                   names=['cooler', 'valve', 'pump', 'hydraulic', 'stable'])
+                                   names=['cooler', 'valve', 'pump', 'hydraulic', 'stable'], nrows=MAX_ROWS)
                 return labels
             except Exception as e:
                 st.warning(f"라벨 데이터 로드 실패: {e}")
