@@ -57,6 +57,7 @@
 ```
 project/
 ├── home.py                 # 메인 대시보드
+├── train_model.py          # 모델 훈련 스크립트
 ├── util/
 │   └── data_loader.py      # 중앙화된 데이터 관리
 ├── pages/
