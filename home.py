@@ -189,10 +189,6 @@ else:
     # 이미 로딩 완료된 경우
     data_status = st.session_state.data_loading_status
     
-    # 상태 정보 업데이트 (캐시된 버전)
-    updated_status = check_data_status_simple()
-    if updated_status['status'] == 'ready':
-        data_status.update(updated_status)
 
 # 데이터 상태 카드 표시
 if data_status['status'] == 'completed' or data_status['status'] == 'ready':
