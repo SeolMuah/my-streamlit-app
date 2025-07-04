@@ -730,14 +730,6 @@ def main():
                 가 표시됩니다.
                 """)
                 
-                # 시작 버튼 (메인 화면에도 추가)
-                if st.button("🚀 모니터링 시작하기", 
-                            type="primary", 
-                            use_container_width=True,
-                            help="실시간 모니터링을 시작합니다"):
-                    st.session_state.monitoring_active = True
-                    st.session_state.start_time = datetime.now()
-                    st.rerun()
         
         # 모니터링 화면
         if st.session_state.monitoring_active:
